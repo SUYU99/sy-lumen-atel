@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SY·LUMEN ATEL｜予光 — 预约</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family: "PingFang SC", "Microsoft Yahei", sans-serif;
+            -webkit-tap-highlight-color:transparent;
+        }
+        body{
+            min-height:100vh;
+            background:#0c0c0c;
+            color:#e8e8e8;
+            padding-bottom:100px;
+        }
+        .container{
+            padding:24px 20px;
+        }
+        .intro-text{
+            font-size:14px;
+            line-height:1.8;
+            opacity:0.7;
+            margin-bottom:30px;
+        }
+        /* 联系信息卡片 */
+        .contact-card{
+            background:#171717;
+            border-radius:16px;
+            padding:22px 20px;
+            margin-bottom:36px;
+            border:1px solid #272727;
+        }
+        .contact-row{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            padding:14px 0;
+            border-bottom:1px solid #242424;
+            font-size:14px;
+        }
+        .contact-row:last-child{
+            border-bottom:none;
+        }
+        .contact-label{
+            opacity:0.55;
+            letter-spacing:1px;
+        }
+        .contact-val{
+            color:#d4bc86;
+        }
+        .copy-btn{
+            font-size:12px;
+            opacity:0.5;
+            padding:3px 8px;
+            border:1px solid #333;
+            border-radius:6px;
+            margin-left:8px;
+            cursor:pointer;
+        }
+        .coop-tip{
+            margin:30px 0;
+            font-size:13px;
+            opacity:0.6;
+        }
+        /* 表单 */
+        .form-item{
+            margin-bottom:24px;
+        }
+        .form-item label{
+            display:block;
+            font-size:14px;
+            margin-bottom:10px;
+            opacity:0.75;
+        }
+        .star{
+            color:#d4bc86;
+        }
+        input, select, textarea{
+            width:100%;
+            background:#171717;
+            border:1px solid #272727;
+            border-radius:12px;
+            padding:16px 18px;
+            color:#eee;
+            font-size:15px;
+            outline:none;
+        }
+        input:focus, select:focus, textarea:focus{
+            border-color:#d4bc86;
+        }
+        textarea{
+            min-height:140px;
+            resize:none;
+        }
+        /* 底部固定按钮 */
+        .fixed-bottom{
+            position:fixed;
+            bottom:0;
+            left:0;
+            width:100%;
+            padding:16px 20px 22px;
+            background:#0c0c0c;
+        }
+        .submit{
+            width:100%;
+            padding:18px;
+            border-radius:999px;
+            border:none;
+            background:linear-gradient(90deg,#d6be88,#c9ad72);
+            color:#111;
+            font-size:16px;
+            font-weight:500;
+            letter-spacing:1px;
+            cursor:pointer;
+        }
+        .status-tip{
+            text-align:center;
+            margin-top:12px;
+            font-size:13px;
+            opacity:0.65;
+        }
+        .back-link{
+            display:block;
+            text-align:center;
+            margin-top:18px;
+            color:#d4bc86;
+            text-decoration:none;
+            font-size:14px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="intro-text">
+        不管是婚礼、活动、肖像还是商业项目，欢迎直接加我微信聊聊你的想法。也可以在小红书 / 视频号 / 抖音找到我。
+    </div>
+
+    <div class="contact-card">
+        <div class="contact-row">
+            <div class="contact-label">微信 WECHAT</div>
+            <div>
+                <span class="contact-val">13326971470</span>
+                <span class="copy-btn" onclick="copyText('13326971470')">复制</span>
+            </div>
+        </div>
+        <div class="contact-row">
+            <div class="contact-label">小红书 RED</div>
+            <div>
+                <span class="contact-val">26536587156</span>
+                <span class="copy-btn" onclick="copyText('26536587156')">复制</span>
+            </div>
+        </div>
+        <div class="contact-row">
+            <div class="contact-label">视频号 CHANNELS</div>
+            <div>
+                <span class="contact-val">暂无</span>
+            </div>
+        </div>
+        <div class="contact-row">
+            <div class="contact-label">抖音 DOUYIN 1</div>
+            <div>
+                <span class="contact-val">SY·咩Enoch</span>
+                <span class="copy-btn" onclick="copyText('SY·咩Enoch')">复制</span>
+            </div>
+        </div>
+        <div class="contact-row">
+            <div class="contact-label">抖音 DOUYIN 2</div>
+            <div>
+                <span class="contact-val">81089275869</span>
+                <span class="copy-btn" onclick="copyText('81089275869')">复制</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="coop-tip">也寻找审美同频的伙伴，支持共勉共创。</div>
+
+    <form id="bookingForm">
+        <div class="form-item">
+            <label>怎么称呼你 <span class="star">*</span></label>
+            <input type="text" name="username" placeholder="你的名字 / 工作室" required>
+        </div>
+        <div class="form-item">
+            <label>联系方式 <span class="star">*</span></label>
+            <input type="text" name="contact" placeholder="微信 / 电话 / 邮箱" required>
+        </div>
+        <div class="form-item">
+            <label>意向日期</label>
+            <input type="text" name="date" placeholder="大致的拍摄时间">
+        </div>
+        <div class="form-item">
+            <label>项目类型</label>
+            <select name="project">
+                <option value="">请选择</option>
+                <option value="婚礼跟拍">婚礼跟拍</option>
+                <option value="婚纱旅拍">婚纱旅拍</option>
+                <option value="个人肖像">个人肖像</option>
+                <option value="商业拍摄">商业拍摄</option>
+                <option value="其他">其他</option>
+            </select>
+        </div>
+        <div class="form-item">
+            <label>简单说说你的想法</label>
+            <textarea name="idea" placeholder="时间、地点、想要的风格…"></textarea>
+        </div>
+    </form>
+</div>
+
+<div class="fixed-bottom">
+    <button class="submit" id="sendBtn">发送预约 &nbsp;SEND REQUEST</button>
+    <div class="status-tip" id="tip"></div>
+    <a href=" index.html" class="back-link">← 返回首页</a >
+</div>
+
+<script>
+function copyText(txt){
+    navigator.clipboard.writeText(txt);
+    alert("已复制");
+}
+
+const SENDKEY = "SCT443812TdCNHqailhqm2ZHH0UpUuDmpp";
+
+document.getElementById("sendBtn").onclick = async function(){
+    const form = document.getElementById("bookingForm");
+    const data = new FormData(form);
+    const name = data.get("username");
+    const contact = data.get("contact");
+    const date = data.get("date");
+    const project = data.get("project");
+    const idea = data.get("idea");
+    const tipDom = document.getElementById("tip");
+
+    if(!name || !contact){
+        tipDom.innerText = "请填写带*的必填项";
+        return;
+    }
+    tipDom.innerText = "正在发送...";
+
+    const msg = `【SY·LUMEN ATEL｜予光 - 新预约】
+称呼：${name}
+联系方式：${contact}
+意向日期：${date||"未填写"}
+项目类型：${project||"未选择"}
+需求描述：${idea||"无"}`;
+
+    try{
+        const res = await fetch(`https://sctapi.ftqq.com/${SENDKEY}.send?title=新预约订单&desp=${encodeURIComponent(msg)}`);
+        const json = await res.json();
+        if(json.code===0){
+            tipDom.innerText = "✅预约提交成功，我会尽快联系您！";
+            form.reset();
+        }else{
+            tipDom.innerText = "❌提交失败，请直接添加微信预约";
+        }
+    }catch(e){
+        tipDom.innerText = "⚠️推送需要部署到网络服务器，本地预览仅为界面";
+    }
+}
+</script>
+</body>
+</html>

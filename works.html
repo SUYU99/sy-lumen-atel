@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PORTFOLIO｜SY·LUMEN ATEL</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+    font-family:"PingFang SC","Microsoft YaHei","Noto Serif SC",serif;
+    font-weight:300;
+    letter-spacing:1.2px;
+    color:#e2e2e2;
+    background:#0f0f0f;
+}
+
+/* 顶部常驻导航 */
+.top-nav{
+    position:fixed;
+    top:0;left:0;right:0;
+    padding:22px 48px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    z-index:200;
+    background:rgba(15,15,15,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid #1a1a1a;
+}
+.top-nav .nav-left{
+    display:flex;
+    align-items:center;
+    gap:32px;
+}
+.top-nav .back{
+    color:#888;
+    text-decoration:none;
+    font-size:12px;
+    letter-spacing:2px;
+    transition:0.3s;
+}
+.top-nav .back:hover{color:#fff;}
+.top-nav .brand{
+    font-size:13px;
+    letter-spacing:4px;
+    color:#d0d0d0;
+}
+.top-nav .nav-menu{
+    display:flex;
+    gap:28px;
+}
+.top-nav .nav-menu a{
+    color:#777;
+    text-decoration:none;
+    font-size:12px;
+    letter-spacing:2px;
+    transition:0.3s;
+}
+.top-nav .nav-menu a:hover{color:#fff;}
+
+/* 首屏目录封面 */
+.catalog-hero{
+    height:100vh;
+    width:100%;
+    display:flex;
+    background:#f8f8f8;
+    padding-top:70px;
+}
+.catalog-left{
+    width:60%;
+    padding:0 60px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    position:relative;
+    z-index:2;
+}
+.catalog-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    margin-bottom:40px;
+}
+.catalog-title h2{
+    font-size:52px;
+    font-weight:300;
+    letter-spacing:6px;
+    color:#666;
+    line-height:1.1;
+}
+.catalog-title p{
+    font-size:28px;
+    letter-spacing:8px;
+    color:#777;
+    margin-top:8px;
+}
+.catalog-brand{
+    font-size:18px;
+    letter-spacing:3px;
+    color:#777;
+}
+.catalog-divider{
+    width:100%;
+    height:1px;
+    background:#ccc;
+    margin-bottom:48px;
+    position:relative;
+}
+.catalog-divider::before{
+    content:"";
+    position:absolute;
+    left:0;top:0;
+    width:60px;
+    height:3px;
+    background:#555;
+}
+.catalog-list{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:0;
+    margin-bottom:60px;
+}
+.catalog-list a{
+    text-decoration:none;
+    padding:0 20px;
+    border-right:1px solid #ddd;
+    transition:0.3s;
+    user-select:none;
+}
+.catalog-list a:last-child{border-right:none;}
+.catalog-list .num{
+    font-size:28px;
+    font-weight:300;
+    color:#999;
+    margin-bottom:8px;
+}
+.catalog-list .name{
+    font-size:20px;
+    letter-spacing:3px;
+    color:#666;
+    margin-bottom:6px;
+    transition:0.3s;
+}
+.catalog-list .en{
+    font-size:12px;
+    letter-spacing:2px;
+    color:#aaa;
+}
+.catalog-list a:hover .name{color:#222;}
+.catalog-footer{
+    position:absolute;
+    bottom:40px;
+    left:50%;
+    transform:translateX(-50%);
+    font-size:12px;
+    letter-spacing:3px;
+    color:#aaa;
+}
+.catalog-right{
+    width:40%;
+    position:relative;
+    overflow:hidden;
+}
+.catalog-right img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position: right top;
+    display:block;
+}
+
+/* 作品内容区 */
+.works-container{
+    max-width:1280px;
+    margin:0 auto;
+    padding:120px 48px;
+}
+.section{
+    margin-bottom:140px;
+    scroll-margin-top:90px;
+}
+.section-head{
+    margin-bottom:56px;
+    padding-bottom:20px;
+    border-bottom:1px solid #1f1f1f;
+}
+.section-num{
+    font-size:12px;
+    color:#666;
+    letter-spacing:3px;
+    margin-bottom:10px;
+}
+.section-title{
+    font-size:26px;
+    font-weight:300;
+    letter-spacing:7px;
+    margin-bottom:10px;
+}
+.section-desc{
+    font-size:13px;
+    color:#777;
+    letter-spacing:2px;
+}
+
+/* 系列卡片网格：PC端四列 */
+.series-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:16px;
+}
+.series-card{
+    position:relative;
+    aspect-ratio: 3/4;
+    border-radius:12px;
+    overflow:hidden;
+    cursor:pointer;
+    background:#1a1a1a;
+    transition:transform 0.4s ease, box-shadow 0.4s ease;
+}
+.series-card:hover{
+    transform:translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+}
+.series-card img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center top;
+    transition:transform 0.6s ease;
+}
+.series-card:hover img{
+    transform:scale(1.05);
+}
+.series-card .card-title{
+    position:absolute;
+    bottom:0;
+    left:0;
+    right:0;
+    padding:20px 16px;
+    background:linear-gradient(transparent, rgba(0,0,0,0.7));
+    color:#fff;
+    font-size:14px;
+    letter-spacing:2px;
+}
+.series-card .card-count{
+    position:absolute;
+    top:12px;
+    right:12px;
+    width:24px;
+    height:24px;
+    line-height:24px;
+    text-align:center;
+    border-radius:50%;
+    background:rgba(0,0,0,0.6);
+    color:#fff;
+    font-size:11px;
+}
+
+/* 展开后的系列详情：仅网格，无独立大图 */
+.series-detail{
+    display:none;
+    margin-top:32px;
+    padding-top:32px;
+    border-top:1px solid #1f1f1f;
+    grid-column: 1 / -1;
+}
+.series-detail.active{
+    display:block;
+}
+.gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:16px;
+}
+.gallery-grid .item{
+    aspect-ratio:3/4;
+    overflow:hidden;
+    border-radius:2px;
+    background:#1a1a1a;
+}
+.gallery-grid .item img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center top;
+    cursor:pointer;
+    transition:transform 0.7s ease, filter 0.5s ease;
+    filter:brightness(0.92);
+}
+.gallery-grid .item img:hover{
+    transform:scale(1.04);
+    filter:brightness(1.03);
+}
+
+.travel .gallery-grid .item{aspect-ratio:16/9;}
+
+/* 灯箱 */
+.lightbox{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.96);
+    z-index:999;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:30px;
+}
+.lightbox img{
+    max-width:90%;
+    max-height:90%;
+    border-radius:2px;
+}
+.lightbox .close{
+    position:absolute;
+    top:28px;
+    right:36px;
+    color:#666;
+    font-size:28px;
+    cursor:pointer;
+    font-weight:200;
+    transition:0.3s;
+}
+.lightbox .close:hover{color:#fff;}
+
+/* 移动端适配 */
+@media(max-width:960px){
+    .top-nav{padding:16px 24px;}
+    .top-nav .nav-menu{display:none;}
+    .catalog-hero{
+        flex-direction:column;
+        height:auto;
+        min-height:100vh;
+        padding-top:60px;
+    }
+    .catalog-right{
+        width:100%;
+        height:50vh;
+    }
+    .catalog-left{
+        width:100%;
+        padding:40px 28px;
+        flex:1;
+    }
+    .catalog-title h2{font-size:36px;}
+    .catalog-title p{font-size:20px;}
+    .catalog-list{
+        grid-template-columns:repeat(2,1fr);
+        gap:24px;
+    }
+    .catalog-list a{
+        border-right:none;
+        border-bottom:1px solid #ddd;
+        padding:0 0 20px 0;
+    }
+    .catalog-footer{
+        position:relative;
+        bottom:auto;
+        left:auto;
+        transform:none;
+        margin-top:30px;
+        text-align:center;
+    }
+    .works-container{padding:80px 24px;}
+    .series-grid{
+        grid-template-columns:repeat(2,1fr);
+        gap:16px;
+    }
+    .gallery-grid{grid-template-columns:repeat(2,1fr);}
+}
+</style>
+</head>
+<body>
+
+<!-- 顶部常驻导航 -->
+<div class="top-nav">
+    <div class="nav-left">
+        <a class="back" href="index.html">← 返回</a>
+        <div class="brand">SY·LUMEN ATEL</div>
+    </div>
+    <div class="nav-menu">
+        <a href="#portrait">肖像写真</a>
+        <a href="#wedding">婚礼影像</a>
+        <a href="#travel">旅拍纪行</a>
+        <a href="#event">活动记录</a>
+        <a href="#commercial">商业拍摄</a>
+    </div>
+</div>
+
+<!-- 首屏目录封面 -->
+<section class="catalog-hero">
+    <div class="catalog-left">
+        <div class="catalog-header">
+            <div class="catalog-title">
+                <h2>CONTENTS</h2>
+                <p>作品目录</p>
+            </div>
+            <div class="catalog-brand">SY·LUMEN ATEL</div>
+        </div>
+        <div class="catalog-divider"></div>
+        
+        <div class="catalog-list">
+            <a href="#portrait">
+                <div class="num">01</div>
+                <div class="name">肖像写真</div>
+                <div class="en">PORTRAIT</div>
+            </a>
+            <a href="#wedding">
+                <div class="num">02</div>
+                <div class="name">婚礼影像</div>
+                <div class="en">WEDDING</div>
+            </a>
+            <a href="#travel">
+                <div class="num">03</div>
+                <div class="name">旅拍纪行</div>
+                <div class="en">TRAVEL</div>
+            </a>
+            <a href="#event">
+                <div class="num">04</div>
+                <div class="name">活动记录</div>
+                <div class="en">EVENT</div>
+            </a>
+            <a href="#commercial">
+                <div class="num">05</div>
+                <div class="name">商业拍摄</div>
+                <div class="en">COMMERCIAL</div>
+            </a>
+        </div>
+
+        <div class="catalog-footer">VOL.01 / 2026</div>
+    </div>
+
+    <div class="catalog-right">
+        <img src="cover.jpg" alt="SY·LUMEN ATEL 封面人像">
+    </div>
+</section>
+
+<!-- 作品内容主体 -->
+<div class="works-container">
+
+    <!-- 01 肖像写真（全系列补全 + 展开后仅网格） -->
+    <div class="section" id="portrait">
+        <div class="section-head">
+            <div class="section-num">01 / PORTRAIT</div>
+            <div class="section-title">肖像写真</div>
+            <div class="section-desc">以光影为笔，记录情绪与温度</div>
+        </div>
+
+        <div class="series-grid">
+            <!-- 夜色鎏光 -->
+            <div class="series">
+                <div class="series-card">
+                    <img src="images/portfolio/portrait/portrait01.jpg" alt="">
+                    <div class="card-count">5</div>
+                    <div class="card-title">夜色鎏光</div>
+                </div>
+                <div class="series-detail">
+                    <div class="gallery-grid">
+                        <div class="item"><img src="images/portfolio/portrait/portrait01.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/portrait/portrait02.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/portrait/portrait03.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/portrait/portrait04.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/portrait/portrait05.jpg" loading="lazy" alt=""></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 绯色甜飒 -->
+            <div class="series">
+                <div class="series-card">
+                    <img src="images/portfolio/portrait/portrait06.jpg" alt="">
+                    <div class="card-count">6</div>
+                    <div class="card-title">绯色甜飒</div>
+                </div>
+                <div class="series-detail">
+                    <div class="gallery-grid">
+                        <div class="item"><img src="images/portfolio/portrait/portrait06.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/portrait/portrait07.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/portrait/portrait08.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/portrait/portrait09.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/portrait/portrait10.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/portrait/portrait11.jpg" loading="lazy" alt=""></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 森屿白裙 -->
+            <div class="series">
+                <div class="series-card">
+                    <img src="images/portfolio/portrait/portrait12.jpg" alt="">
+                    <div class="card-count">4</div>
+                    <div class="card-title">森屿白裙</div>
+                </div>
+                <div class="series-detail">
+                    <div class="gallery-grid">
+                        <div class="item"><img src="images/portfolio/portrait/portrait12.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/portrait/portrait13.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/portrait/portrait14.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/portrait/portrait15.jpg" loading="lazy" alt=""></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 白墙绯影 -->
+            <div class="series">
+                <div class="series-card">
+                    <img src="images/portfolio/portrait/portrait16.jpg" alt="">
+                    <div class="card-count">5</div>
+                    <div class="card-title">白墙绯影</div>
+                </div>
+                <div class="series-detail">
+                    <div class="gallery-grid">
+                        <div class="item"><img src="images/portfolio/portrait/portrait16.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/portrait/portrait17.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/portrait/portrait18.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/portrait/portrait19.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/portrait/portrait20.jpg" loading="lazy" alt=""></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 通勤纪事 -->
+            <div class="series">
+                <div class="series-card">
+                    <img src="images/portfolio/portrait/portrait21.jpg" alt="">
+                    <div class="card-count">6</div>
+                    <div class="card-title">通勤纪事</div>
+                </div>
+                <div class="series-detail">
+                    <div class="gallery-grid">
+                        <div class="item"><img src="images/portfolio/portrait/portrait21.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/portrait/portrait22.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/portrait/portrait23.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/portrait/portrait24.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/portrait/portrait25.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/portrait/portrait26.jpg" loading="lazy" alt=""></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 湖畔红笺 -->
+            <div class="series">
+                <div class="series-card">
+                    <img src="images/portfolio/portrait/portrait27.jpg" alt="">
+                    <div class="card-count">4</div>
+                    <div class="card-title">湖畔红笺</div>
+                </div>
+                <div class="series-detail">
+                    <div class="gallery-grid">
+                        <div class="item"><img src="images/portfolio/portrait/portrait27.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/portrait/portrait28.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/portrait/portrait29.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/portrait/portrait30.jpg" loading="lazy" alt=""></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 烟湖墨扇 -->
+            <div class="series">
+                <div class="series-card">
+                    <img src="images/portfolio/portrait/portrait31.jpg" alt="">
+                    <div class="card-count">8</div>
+                    <div class="card-title">烟湖墨扇</div>
+                </div>
+                <div class="series-detail">
+                    <div class="gallery-grid">
+                        <div class="item"><img src="images/portfolio/portrait/portrait31.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/portrait/portrait32.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/portrait/portrait33.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/portrait/portrait34.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/portrait/portrait35.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/portrait/portrait36.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/portrait/portrait37.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/portrait/portrait38.jpg" loading="lazy" alt=""></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 酒廊旧梦 -->
+            <div class="series">
+                <div class="series-card">
+                    <img src="images/portfolio/portrait/portrait39.jpg" alt="">
+                    <div class="card-count">5</div>
+                    <div class="card-title">酒廊旧梦</div>
+                </div>
+                <div class="series-detail">
+                    <div class="gallery-grid">
+                        <div class="item"><img src="images/portfolio/portrait/portrait39.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/portrait/portrait40.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/portrait/portrait41.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/portrait/portrait42.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/portrait/portrait43.jpg" loading="lazy" alt=""></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 素白影调 -->
+            <div class="series">
+                <div class="series-card">
+                    <img src="images/portfolio/portrait/portrait44.jpg" alt="">
+                    <div class="card-count">3</div>
+                    <div class="card-title">素白影调</div>
+                </div>
+                <div class="series-detail">
+                    <div class="gallery-grid">
+                        <div class="item"><img src="images/portfolio/portrait/portrait44.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/portrait/portrait45.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/portrait/portrait46.jpg" loading="lazy" alt=""></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 隅间万象 -->
+            <div class="series">
+                <div class="series-card">
+                    <img src="images/portfolio/portrait/portrait47.jpg" alt="">
+                    <div class="card-count">10</div>
+                    <div class="card-title">隅间万象</div>
+                </div>
+                <div class="series-detail">
+                    <div class="gallery-grid">
+                        <div class="item"><img src="images/portfolio/portrait/portrait47.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/portrait/portrait48.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/portrait/portrait49.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/portrait/portrait50.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/portrait/portrait51.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/portrait/portrait52.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/portrait/portrait53.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/portrait/portrait54.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/portrait/portrait55.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/portrait/portrait56.jpg" loading="lazy" alt=""></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 02 婚礼影像 -->
+    <div class="section" id="wedding">
+        <div class="section-head">
+            <div class="section-num">02 / WEDDING</div>
+            <div class="section-title">婚礼影像</div>
+            <div class="section-desc">定格仪式里的温柔与郑重</div>
+        </div>
+
+        <div class="series-grid">
+            <!-- 湖光恋曲 -->
+            <div class="series">
+                <div class="series-card">
+                    <img src="images/portfolio/wedding/wedding_01.jpg" alt="">
+                    <div class="card-count">12</div>
+                    <div class="card-title">湖光恋曲</div>
+                </div>
+                <div class="series-detail">
+                    <div class="gallery-grid">
+                        <div class="item"><img src="images/portfolio/wedding/wedding_01.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/wedding/wedding_02.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/wedding/wedding_03.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/wedding/wedding_04.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/wedding/wedding_05.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/wedding/wedding_06.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/wedding/wedding_07.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/wedding/wedding_08.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/wedding/wedding_09.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/wedding/wedding_10.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/wedding/wedding_11.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/wedding/wedding_12.jpg" loading="lazy" alt=""></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 雪境花誓 -->
+            <div class="series">
+                <div class="series-card">
+                    <img src="images/portfolio/wedding/wedding_13.jpg" alt="">
+                    <div class="card-count">11</div>
+                    <div class="card-title">雪境花誓</div>
+                </div>
+                <div class="series-detail">
+                    <div class="gallery-grid">
+                        <div class="item"><img src="images/portfolio/wedding/wedding_13.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/wedding/wedding_14.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/wedding/wedding_15.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/wedding/wedding_16.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/wedding/wedding_17.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/wedding/wedding_18.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/wedding/wedding_19.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/wedding/wedding_20.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/wedding/wedding_21.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/wedding/wedding_22.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/wedding/wedding_23.jpg" loading="lazy" alt=""></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 室内影棚 -->
+            <div class="series">
+                <div class="series-card">
+                    <img src="images/portfolio/wedding/wedding_24.jpg" alt="">
+                    <div class="card-count">11</div>
+                    <div class="card-title">室内影棚</div>
+                </div>
+                <div class="series-detail">
+                    <div class="gallery-grid">
+                        <div class="item"><img src="images/portfolio/wedding/wedding_24.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/wedding/wedding_25.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/wedding/wedding_26.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/wedding/wedding_27.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/wedding/wedding_28.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/wedding/wedding_29.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/wedding/wedding_30.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/wedding/wedding_31.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/wedding/wedding_32.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/wedding/wedding_33.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/wedding/wedding_34.jpg" loading="lazy" alt=""></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 03 旅拍纪行 -->
+    <div class="section travel" id="travel">
+        <div class="section-head">
+            <div class="section-num">03 / TRAVEL</div>
+            <div class="section-title">旅拍纪行</div>
+            <div class="section-desc">山川湖海间的漫游叙事</div>
+        </div>
+
+        <div class="series-grid">
+            <!-- 青甘旅拍 第一辑 -->
+            <div class="series">
+                <div class="series-card">
+                    <img src="images/portfolio/travel/travel_01.jpg" alt="">
+                    <div class="card-count">8</div>
+                    <div class="card-title">青甘旅拍 · 第一辑</div>
+                </div>
+                <div class="series-detail">
+                    <div class="gallery-grid">
+                        <div class="item"><img src="images/portfolio/travel/travel_01.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/travel/travel_02.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/travel/travel_03.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/travel/travel_04.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/travel/travel_05.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/travel/travel_06.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/travel/travel_07.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/travel/travel_08.jpg" loading="lazy" alt=""></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 青甘旅拍 第二辑 -->
+            <div class="series">
+                <div class="series-card">
+                    <img src="images/portfolio/travel/travel_09.jpg" alt="">
+                    <div class="card-count">7</div>
+                    <div class="card-title">青甘旅拍 · 第二辑</div>
+                </div>
+                <div class="series-detail">
+                    <div class="gallery-grid">
+                        <div class="item"><img src="images/portfolio/travel/travel_09.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/travel/travel_10.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/travel/travel_11.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/travel/travel_12.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/travel/travel_13.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/travel/travel_14.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/travel/travel_15.jpg" loading="lazy" alt=""></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 重庆旅拍 第一辑 -->
+            <div class="series">
+                <div class="series-card">
+                    <img src="images/portfolio/travel/travel_16.jpg" alt="">
+                    <div class="card-count">4</div>
+                    <div class="card-title">重庆旅拍 · 第一辑</div>
+                </div>
+                <div class="series-detail">
+                    <div class="gallery-grid">
+                        <div class="item"><img src="images/portfolio/travel/travel_16.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/travel/travel_17.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/travel/travel_18.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/travel/travel_19.jpg" loading="lazy" alt=""></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 04 活动记录 -->
+    <div class="section" id="event">
+        <div class="section-head">
+            <div class="section-num">04 / EVENT</div>
+            <div class="section-title">活动记录</div>
+            <div class="section-desc">现场瞬间的真实留存</div>
+        </div>
+        <div class="series-grid">
+            <div class="series">
+                <div class="series-card">
+                    <img src="images/portfolio/event/event_01.jpg" alt="">
+                    <div class="card-count">2</div>
+                    <div class="card-title">活动纪实</div>
+                </div>
+                <div class="series-detail">
+                    <div class="gallery-grid">
+                        <div class="item"><img src="images/portfolio/event/event_01.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/event/event_02.jpg" loading="lazy" alt=""></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 05 商业拍摄 -->
+    <div class="section" id="commercial">
+        <div class="section-head">
+            <div class="section-num">05 / COMMERCIAL</div>
+            <div class="section-title">商业拍摄</div>
+            <div class="section-desc">品牌视觉的专业呈现</div>
+        </div>
+        <div class="series-grid">
+            <div class="series">
+                <div class="series-card">
+                    <img src="images/portfolio/commercial/commercial_01.jpg" alt="">
+                    <div class="card-count">2</div>
+                    <div class="card-title">品牌形象</div>
+                </div>
+                <div class="series-detail">
+                    <div class="gallery-grid">
+                        <div class="item"><img src="images/portfolio/commercial/commercial_01.jpg" loading="lazy" alt=""></div>
+                        <div class="item"><img src="images/portfolio/commercial/commercial_02.jpg" loading="lazy" alt=""></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- 灯箱放大 -->
+<div class="lightbox">
+    <div class="close">×</div>
+    <img id="lb-img" alt="">
+</div>
+
+<script>
+// 卡片点击展开/收起组图
+document.querySelectorAll('.series-card').forEach(card => {
+    card.addEventListener('click', () => {
+        const detail = card.nextElementSibling;
+        detail.classList.toggle('active');
+        if(detail.classList.contains('active')){
+            setTimeout(() => {
+                detail.scrollIntoView({behavior: 'smooth', block: 'start'});
+            }, 100);
+        }
+    });
+});
+
+// 图片灯箱功能
+const lb = document.querySelector('.lightbox');
+const lbImg = document.getElementById('lb-img');
+document.querySelectorAll('.gallery-grid img').forEach(img => {
+    img.addEventListener('click', () => {
+        lbImg.src = img.src;
+        lb.style.display = 'flex';
+    });
+});
+lb.addEventListener('click', e => {
+    if(e.target === lb || e.target.classList.contains('close')){
+        lb.style.display = 'none';
+    }
+});
+</script>
+
+</body>
+</html>
+
